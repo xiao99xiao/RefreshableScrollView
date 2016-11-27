@@ -275,7 +275,7 @@
         [_topProgressIndicator setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_topProgressIndicator setIndeterminate:YES];
         [_topProgressIndicator setStyle:NSProgressIndicatorSpinningStyle];
-        [_topProgressIndicator setControlSize: NSRegularControlSize];
+        [_topProgressIndicator setControlSize: NSControlSizeRegular];
         [_topProgressIndicator setDisplayedWhenStopped:YES];
         [_topProgressIndicator setAlphaValue:0];
         [_topProgressIndicator sizeToFit];
@@ -293,7 +293,7 @@
         [_bottomProgressIndicator setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_bottomProgressIndicator setIndeterminate:YES];
         [_bottomProgressIndicator setStyle:NSProgressIndicatorSpinningStyle];
-        [_bottomProgressIndicator setControlSize: NSRegularControlSize];
+        [_bottomProgressIndicator setControlSize: NSControlSizeRegular];
         [_bottomProgressIndicator setDisplayedWhenStopped:YES];
         [_bottomProgressIndicator setAlphaValue:0];
         [_bottomProgressIndicator sizeToFit];

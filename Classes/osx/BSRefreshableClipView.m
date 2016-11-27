@@ -64,28 +64,26 @@
 
 #pragma mark NSClipView
 
-- (NSPoint)constrainScrollPoint:(NSPoint)proposedNewOrigin
-{
-    NSPoint constrained = [super constrainScrollPoint:proposedNewOrigin];
+- (NSRect)constrainBoundsRect:(NSRect)proposedBounds {
+    NSRect constrained = [super constrainBoundsRect:proposedBounds];
     const NSRect clipViewBounds = self.bounds;
     NSView* const documentView = self.documentView;
     const NSRect documentFrame = documentView.frame;
-
+    
     const BSRefreshableScrollViewSide refreshingSides = [self refreshingSides];
     
-    if ((refreshingSides & BSRefreshableScrollViewSideTop) && proposedNewOrigin.y <= 0) {
+    if ((refreshingSides & BSRefreshableScrollViewSideTop) && proposedBounds.origin.y <= 0) {
         const NSRect headerFrame = [self headerView].frame;
-        constrained.y = MAX(-headerFrame.size.height, proposedNewOrigin.y);
+        constrained.origin.y = MAX(-headerFrame.size.height, proposedBounds.origin.y);
     }
     
     if((refreshingSides & BSRefreshableScrollViewSideBottom) ) {
         const NSRect footerFrame = [self footerView].frame;
-        if (proposedNewOrigin.y >  documentFrame.size.height - clipViewBounds.size.height) {
+        if (proposedBounds.origin.y >  documentFrame.size.height - clipViewBounds.size.height) {
             const CGFloat maxHeight = documentFrame.size.height - clipViewBounds.size.height + footerFrame.size.height + 1;
-            constrained.y = MIN(maxHeight, proposedNewOrigin.y);
+            constrained.origin.y = MIN(maxHeight, proposedBounds.origin.y);
         }
     }
-
     return constrained;
 }
 
